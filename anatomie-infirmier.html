@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anatomie pour infirmiers — français et دارجة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Cairo:wght@400;600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F6F7; --surface:#FFFFFF; --ink:#12263A; --muted:#526476; --line:#D5E0E5;
+  --nerv:#5B46B2; --musc:#BB3A4A; --joint:#1F6FA8; --skel:#9A6A12;
+  --ok:#1E7A4F; --bad:#B3261E;
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,-apple-system,sans-serif;
+  --arabic:"Cairo","Noto Naskh Arabic",Tahoma,"Segoe UI",sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1A24; --surface:#172431; --ink:#E6EEF3; --muted:#9BB0BF; --line:#2A3B4A;
+    --nerv:#A793F2; --musc:#F08592; --joint:#6DB4E8; --skel:#E3B15C; --ok:#5CCB93; --bad:#FF8A80;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1A24; --surface:#172431; --ink:#E6EEF3; --muted:#9BB0BF; --line:#2A3B4A;
+  --nerv:#A793F2; --musc:#F08592; --joint:#6DB4E8; --skel:#E3B15C; --ok:#5CCB93; --bad:#FF8A80;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6}
+.wrap{max-width:62rem;margin:0 auto;padding:0 1.25rem}
+
+/* hero */
+.hero{padding:2.5rem 0 1.5rem}
+.hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:2rem;align-items:center}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2rem,5vw,3.4rem);line-height:1.05;margin:0 0 .5rem;letter-spacing:-.02em}
+.hero .ar-sub{font-family:var(--arabic);direction:rtl;font-size:1.25rem;font-weight:600;color:var(--muted);margin:0 0 1rem}
+.hero p.lead{color:var(--muted);max-width:34rem;margin:0}
+.neuron{width:100%;height:auto;color:var(--ink)}
+.neuron .soma{fill:color-mix(in srgb,var(--nerv) 18%,var(--surface));stroke:var(--nerv);stroke-width:3}
+.neuron .nuc{fill:var(--nerv)}
+.neuron .fiber{stroke:var(--ink);stroke-width:2.5;fill:none;stroke-linecap:round;opacity:.75}
+.neuron .myel{fill:color-mix(in srgb,var(--nerv) 30%,var(--surface));stroke:var(--nerv);stroke-width:2}
+.neuron .pulse{fill:var(--musc)}
+@media (prefers-reduced-motion: reduce){.neuron .pulse{display:none}}
+
+/* nav */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar-in{display:flex;gap:.5rem;align-items:stretch;justify-content:space-between;flex-wrap:wrap;padding-top:.5rem;padding-bottom:.5rem}
+.tabs{display:flex;gap:.25rem;flex-wrap:wrap}
+.tab{appearance:none;border:0;background:transparent;color:var(--muted);font:600 .98rem var(--body);padding:.6rem .9rem;border-radius:.6rem;cursor:pointer;display:flex;align-items:center;gap:.45rem;border-bottom:3px solid transparent;border-radius:.6rem .6rem 0 0}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--c)}
+.tab .ar{font-family:var(--arabic);font-weight:600}
+.modes{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;align-self:center;background:var(--surface)}
+.modes button{appearance:none;border:0;background:transparent;color:var(--muted);font:600 .85rem var(--body);padding:.4rem .8rem;cursor:pointer}
+.modes button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+button:focus-visible{outline:3px solid var(--joint);outline-offset:2px}
+
+/* chapter */
+.chapter{padding:2rem 0 3rem;border-top:0}
+.ch-head{border-left:6px solid var(--c);padding-left:1rem;margin-bottom:2rem}
+.ch-head h2{font-family:var(--display);font-weight:800;font-size:clamp(1.7rem,4vw,2.6rem);margin:0;line-height:1.1;color:var(--c);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:baseline}
+.ch-head .intro{margin:.4rem 0 0;color:var(--muted)}
+.sec{background:var(--surface);border:1px solid var(--line);border-radius:1rem;padding:1.4rem 1.5rem;margin-bottom:1.1rem}
+.sec>h3.title{font-family:var(--display);font-weight:600;font-size:1.35rem;margin:0 0 1rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:baseline}
+.sec h4{font-family:var(--display);font-weight:600;font-size:1.1rem;margin:1.2rem 0 .5rem;color:var(--c);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:baseline}
+.ar{font-family:var(--arabic);direction:rtl;text-align:right;line-height:1.9}
+.fr{text-align:left}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin:.4rem 0}
+.pair>.ar:only-child{grid-column:1/-1}
+.pair p{margin:0}
+.pair .ar{color:var(--ink)}
+ul.items{list-style:none;margin:.5rem 0;padding:0;display:grid;gap:.1rem}
+ul.items li{display:grid;grid-template-columns:minmax(9rem,13rem) 1fr;gap:.25rem 1rem;padding:.6rem 0;border-top:1px solid var(--line);align-items:baseline}
+ul.items li:first-child{border-top:0}
+.term{font-weight:600}
+.term small{font-family:var(--arabic);font-weight:600;color:var(--muted);margin-inline-start:.4rem;font-size:.95em}
+ul.items .desc{display:grid;gap:.15rem}
+ul.items .desc .ar{margin:0}
+ul.items .desc .fr{margin:0;color:var(--muted)}
+.note,.ex{margin:1rem 0 .2rem;padding:.8rem 1rem;border-radius:.7rem;background:color-mix(in srgb,var(--c) 9%,var(--surface));border:1px solid color-mix(in srgb,var(--c) 28%,var(--line))}
+.note .fr,.ex .fr{margin:0 0 .3rem}
+.note .ar,.ex .ar{margin:0}
+.ex b{color:var(--c)}
+.tablewrap{overflow-x:auto;margin:.6rem 0}
+table{border-collapse:collapse;width:100%;min-width:30rem}
+th,td{padding:.55rem .7rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:.9rem;border-bottom:2px solid var(--c)}
+td.ar,th.ar{text-align:right}
+tbody tr:nth-child(even){background:color-mix(in srgb,var(--c) 5%,var(--surface))}
+
+/* mode toggle */
+body[data-mode="fr"] .ar{display:none!important}
+body[data-mode="ar"] .fr{display:none!important}
+body[data-mode="fr"] .pair,body[data-mode="ar"] .pair{grid-template-columns:1fr}
+body[data-mode="fr"] ul.items li{grid-template-columns:1fr}
+
+/* summary */
+.sum{background:var(--ink);color:var(--bg);border-radius:1rem;padding:1.4rem 1.5rem;margin:1.5rem 0}
+.sum h3{font-family:var(--display);font-weight:600;font-size:1.3rem;margin:0 0 .8rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.sum ul{margin:0;padding:0;list-style:none;display:grid;gap:.5rem}
+.sum li{padding-inline-start:1.6rem;position:relative}
+.sum li::before{content:"";position:absolute;inset-inline-start:0;top:.55em;width:.8rem;height:.8rem;border-radius:50%;background:var(--c)}
+
+/* quiz */
+.quiz{background:var(--surface);border:2px solid var(--c);border-radius:1rem;padding:1.4rem 1.5rem}
+.quiz h3{font-family:var(--display);font-weight:600;font-size:1.3rem;margin:0 0 1rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.q{margin:0 0 1.4rem}
+.q p{margin:0 0 .5rem;font-weight:600}
+.opts{display:grid;gap:.45rem}
+.opt{appearance:none;text-align:left;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:500 1rem var(--body);padding:.65rem .9rem;border-radius:.6rem;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--c)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 16%,var(--surface))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--surface))}
+.fb{min-height:1.4em;margin:.4rem 0 0;font-weight:600;font-size:.95rem}
+.fb.ok{color:var(--ok)} .fb.no{color:var(--bad)}
+.score{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:1rem}
+.score strong{font-family:var(--display);font-size:1.4rem}
+.reset{appearance:none;border:0;background:var(--c);color:#fff;font:600 .95rem var(--body);padding:.6rem 1.1rem;border-radius:.6rem;cursor:pointer}
+:root[data-theme="dark"] .reset{color:#101820}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .reset{color:#101820}}
+
+
+/* figures */
+.fig{margin:1.2rem auto .4rem;text-align:center}
+.fig svg{width:100%;max-width:27rem;height:auto;color:var(--ink)}
+.fig figcaption{margin-top:.5rem;color:var(--muted);font-size:.92rem;display:grid;gap:.1rem}
+.fig .lbl{font:500 13px var(--body);fill:var(--ink)}
+.fig .lbl2{font:400 11px var(--body);fill:var(--muted)}
+.fig .lead{stroke:var(--ink);stroke-width:1.2;opacity:.5;fill:none}
+.fig .ax{fill:color-mix(in srgb,var(--skel) 35%,var(--surface));stroke:var(--skel);stroke-width:2.5}
+.fig .axl{fill:none;stroke:var(--skel);stroke-linecap:round}
+.fig .ap{fill:color-mix(in srgb,var(--joint) 35%,var(--surface));stroke:var(--joint);stroke-width:2.5}
+.fig .apl{fill:none;stroke:var(--joint);stroke-linecap:round}
+.legend{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;margin-top:.5rem;font-size:.92rem}
+.legend span{display:inline-flex;align-items:center;gap:.4rem}
+.legend i{width:.9rem;height:.9rem;border-radius:3px;display:inline-block}
+
+footer{padding:1.5rem 0 2.5rem;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+
+@media (max-width:720px){
+  .hero-grid{grid-template-columns:1fr}
+  .pair{grid-template-columns:1fr}
+  ul.items li{grid-template-columns:1fr}
+  .sec,.quiz,.sum{padding:1.1rem 1.1rem}
+  .tab{padding:.5rem .6rem;font-size:.92rem}
+}
+</style>
+</head>
+<body data-mode="both">
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Anatomie pour le niveau infirmier</h1>
+      <p class="ar-sub" lang="ar" dir="rtl">التشريح بالفرنسية مع الشرح بالدارجة</p>
+      <p class="lead">Quatre chapitres de révision : le système nerveux, le système musculaire, le système squelettique et les articulations. Chaque notion est en français avec son explication en darija, avec des schémas, un résumé et un test.</p>
+    </div>
+    <svg class="neuron" viewBox="0 0 640 220" role="img" aria-label="Schéma d'un neurone avec dendrites, corps cellulaire, axone et gaine de myéline">
+      <g class="fiber">
+        <path d="M70 100 C40 80 30 60 12 52"/>
+        <path d="M68 108 C38 112 24 122 8 126"/>
+        <path d="M80 82 C72 56 66 40 70 18"/>
+        <path d="M82 120 C78 150 70 170 74 200"/>
+        <path d="M30 70 L22 84"/><path d="M52 36 L40 30"/><path d="M34 119 L28 136"/>
+        <path d="M116 100 L520 100"/>
+        <path d="M520 100 C550 90 570 70 600 58"/>
+        <path d="M520 100 L612 100"/>
+        <path d="M520 100 C550 112 570 136 602 150"/>
+      </g>
+      <rect class="myel" x="150" y="86" width="56" height="28" rx="14"/>
+      <rect class="myel" x="232" y="86" width="56" height="28" rx="14"/>
+      <rect class="myel" x="314" y="86" width="56" height="28" rx="14"/>
+      <rect class="myel" x="396" y="86" width="56" height="28" rx="14"/>
+      <circle class="soma" cx="94" cy="100" r="28"/>
+      <circle class="nuc" cx="94" cy="100" r="9"/>
+      <circle class="fiber" cx="600" cy="58" r="5" style="fill:var(--ink)"/>
+      <circle class="fiber" cx="612" cy="100" r="5" style="fill:var(--ink)"/>
+      <circle class="fiber" cx="602" cy="150" r="5" style="fill:var(--ink)"/>
+      <circle class="pulse" r="6"><animateMotion dur="3.2s" repeatCount="indefinite" path="M122 100 L520 100"/></circle>
+      <g font-size="13" fill="currentColor" font-family="Figtree, sans-serif" style="font-weight:500">
+        <text x="40" y="214">Dendrites</text>
+        <text x="64" y="150" display="none">Corps</text>
+        <text x="170" y="140">Myéline</text>
+        <text x="300" y="72">Axone</text>
+        <text x="540" y="186">Terminaisons</text>
+      </g>
+    </svg>
+  </div>
+</header>
+
+<nav class="bar" aria-label="Chapitres">
+  <div class="wrap bar-in">
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="modes" role="group" aria-label="Langue affichée">
+      <button type="button" data-mode="both" aria-pressed="true">FR + دارجة</button>
+      <button type="button" data-mode="fr" aria-pressed="false">Français</button>
+      <button type="button" data-mode="ar" aria-pressed="false">دارجة</button>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section class="chapter" id="panel" role="tabpanel" tabindex="-1"></section>
+</main>
+
+<footer>
+  <div class="wrap">Support de révision, niveau infirmier. Les schémas et définitions sont simplifiés : référez-vous toujours à votre cours et à vos enseignants.</div>
+</footer>
+
+<script>
+var CHAPTERS = [
+/* ------------------------------------------------------------------ NERVEUX */
+{
+  id:"nerveux", short:"Nerveux", icon:"🧠", color:"var(--nerv)",
+  fr:"Le système nerveux", ar:"الجهاز العصبي",
+  intro:"غادي نشرح ليك الجهاز العصبي بالفرنسية مع التوضيح بالدارجة، بطريقة مناسبة لمستوى التمريض (Niveau infirmier).",
+  sections:[
+    {fr:"Définition", ar:"التعريف", blocks:[
+      {t:"p", fr:"Le système nerveux est un ensemble d'organes qui contrôle et coordonne les fonctions du corps humain.",
+          ar:"الجهاز العصبي هو مجموعة ديال الأعضاء اللي كيتحكمو فالجسم، كيتلقاو المعلومات، كيحللوها، وكيرسلو الأوامر باش الجسم يتفاعل مع المحيط ديالو."}
+    ]},
+    {fr:"Les divisions du système nerveux", ar:"التقسيمات", blocks:[
+      {t:"p", ar:"الجهاز العصبي كيتقسم إلى جوج أقسام رئيسية:"},
+      {t:"h", fr:"A. Le système nerveux central (SNC)", ar:"الجهاز العصبي المركزي"},
+      {t:"items", items:[
+        {term:"L'encéphale", ar:"الدماغ ومكوناته داخل الجمجمة."},
+        {term:"La moelle épinière", ar:"النخاع الشوكي داخل العمود الفقري."}
+      ]},
+      {t:"note", ar:"الدور ديالو: معالجة المعلومات والتحكم فوظائف الجسم.", fr:"Rôle : traiter l'information et contrôler les fonctions du corps."},
+      {t:"h", fr:"B. Le système nerveux périphérique (SNP)", ar:"الجهاز العصبي المحيطي"},
+      {t:"p", ar:"كيشمل الأعصاب اللي كتوصل الجهاز المركزي بباقي الجسم."},
+      {t:"items", items:[
+        {term:"Les nerfs crâniens", ar:"الأعصاب القحفية."},
+        {term:"Les nerfs spinaux", ar:"الأعصاب الشوكية."}
+      ]},
+      {t:"note", ar:"الدور ديالو: نقل المعلومات الحسية والأوامر الحركية.", fr:"Rôle : transmettre les informations sensitives et les ordres moteurs."}
+    ]},
+    {fr:"Les subdivisions fonctionnelles", ar:"التقسيم الوظيفي", blocks:[
+      {t:"p", ar:"الجهاز العصبي المحيطي كيتقسم وظيفياً إلى:"},
+      {t:"h", fr:"Le système nerveux somatique", ar:"الجهاز العصبي الجسدي"},
+      {t:"p", ar:"كيتحكم خصوصاً فالحركات الإرادية، بحال المشي وتحريك اليد، وكينقل المعلومات الحسية."},
+      {t:"h", fr:"Le système nerveux autonome ou végétatif", ar:"الجهاز العصبي الذاتي"},
+      {t:"p", ar:"كينظم الوظائف اللاإرادية بحال نبض القلب والهضم. كيتقسم إلى:"},
+      {t:"items", items:[
+        {term:"Sympathique", ar:"كيساعد الجسم يتفاعل مع الخطر أو المجهود؛ غالباً كيزيد نبض القلب."},
+        {term:"Parasympathique", ar:"كيساعد على الراحة والهضم؛ غالباً كينقص نبض القلب."},
+        {term:"Entérique", ar:"شبكة عصبية كتساهم فتنظيم حركة وإفرازات الجهاز الهضمي."}
+      ]}
+    ]},
+    {fr:"Les principales parties de l'encéphale", ar:"أهم أجزاء الدماغ", blocks:[
+      {t:"fig", k:"brain", fr:"Schéma simplifié de l'encéphale (vue de côté).", ar:"رسم مبسط للدماغ (من الجنب)."},
+      {t:"items", items:[
+        {term:"Le cerveau", tAr:"المخ", ar:"مسؤول على التفكير، الذاكرة، اللغة، تفسير الحواس والحركات الإرادية."},
+        {term:"Le cervelet", tAr:"المخيخ", ar:"كيساهم فالتوازن وتنسيق الحركات والدقة ديالها."},
+        {term:"Le tronc cérébral", tAr:"جذع الدماغ", ar:"كيساهم فتنظيم وظائف حيوية بحال التنفس ونبض القلب، وكيحتوي على مسارات عصبية مهمة."}
+      ]}
+    ]},
+    {fr:"Le neurone", ar:"الخلية العصبية", blocks:[
+      {t:"p", fr:"Le neurone est la cellule de base du système nerveux : il reçoit et transmet l'information.",
+          ar:"الـ neurone هو الخلية الأساسية ديال الجهاز العصبي، وكيقوم باستقبال ونقل المعلومات."},
+      {t:"p", ar:"الأجزاء الرئيسية ديالو:"},
+      {t:"items", items:[
+        {term:"Les dendrites", ar:"كيتلقاو الإشارات."},
+        {term:"Le corps cellulaire", ar:"جسم الخلية."},
+        {term:"L'axone", ar:"كينقل الإشارة العصبية."},
+        {term:"La myéline", ar:"غلاف كيساعد على تسريع انتقال الإشارة فالأعصاب اللي فيها الميالين."}
+      ]}
+    ]},
+    {fr:"Les fonctions du système nerveux", ar:"الوظائف", blocks:[
+      {t:"items", items:[
+        {term:"Fonction sensitive", ar:"استقبال المعلومات بحال الألم والحرارة واللمس."},
+        {term:"Fonction intégrative", ar:"تحليل المعلومات ومعالجتها."},
+        {term:"Fonction motrice", ar:"إرسال الأوامر للعضلات والغدد."}
+      ]},
+      {t:"ex", ar:"إلا لمستي شي حاجة سخونة، الأعصاب كتنقل الإشارة، والجهاز العصبي كيساهم فإبعاد يدك بسرعة."}
+    ]}
+  ],
+  summary:[
+    "SNC = Encéphale + Moelle épinière",
+    "SNP = Nerfs crâniens + Nerfs spinaux",
+    "Système somatique = الحركات الإرادية والإحساس الجسدي.",
+    "Système autonome = الوظائف اللاإرادية.",
+    "Neurone = الوحدة الأساسية للجهاز العصبي.",
+    "Cervelet = التوازن وتنسيق الحركات."
+  ],
+  quiz:[
+    {q:"Quels sont les deux éléments du système nerveux central ?", o:["Le cerveau et les muscles","L'encéphale et la moelle épinière","Les nerfs et les os"], a:1},
+    {q:"Quel organe participe à l'équilibre ?", o:["Le cervelet","Le foie","Le rein"], a:0},
+    {q:"Quel système régule notamment la digestion et le rythme cardiaque ?", o:["Le système squelettique","Le système nerveux autonome","Le système musculaire"], a:1},
+    {q:"Quelle est l'unité de base du système nerveux ?", o:["Le neurone","Le globule rouge","L'ostéocyte"], a:0}
+  ]
+},
+/* ----------------------------------------------------------------- MUSCULAIRE */
+{
+  id:"musculaire", short:"Musculaire", icon:"💪", color:"var(--musc)",
+  fr:"Le système musculaire", ar:"الجهاز العضلي",
+  intro:"غادي نشرح ليك الجهاز العضلي بالفرنسية مع الشرح بالدارجة، بمستوى التمريض (Niveau infirmier).",
+  sections:[
+    {fr:"Définition", ar:"التعريف", blocks:[
+      {t:"p", fr:"Le système musculaire est l'ensemble des muscles du corps humain. Il permet les mouvements, le maintien de la posture et la production de chaleur.",
+          ar:"الجهاز العضلي هو مجموع العضلات اللي كاينة فالجسم، وكيعاوننا نتحركو، نحافظو على الوقفة ديالنا، وننتجو الحرارة."}
+    ]},
+    {fr:"Les fonctions du système musculaire", ar:"الوظائف", blocks:[
+      {t:"items", items:[
+        {term:"Le mouvement", ar:"كيسمح لينا نمشيو، نجريو ونحركو يدينا."},
+        {term:"Le maintien de la posture", ar:"كيساعدنا نبقاو واقفين أو جالسين بتوازن."},
+        {term:"La production de chaleur", ar:"العضلات كتنتج الحرارة أثناء الانقباض."},
+        {term:"La protection des organes", ar:"بعض العضلات كتحمي وكتدعم الأعضاء الداخلية."},
+        {term:"La circulation sanguine", ar:"عضلة القلب كتضخ الدم، والعضلات الهيكلية كتعاون رجوع الدم الوريدي للقلب."}
+      ]}
+    ]},
+    {fr:"Les trois types de muscles", ar:"أنواع العضلات", blocks:[
+      {t:"fig", k:"muscles", fr:"Aspect des trois types de fibres musculaires.", ar:"الشكل ديال الأنواع الثلاثة ديال العضلات."},
+      {t:"h", fr:"Le muscle squelettique", ar:"العضلات الهيكلية"},
+      {t:"items", items:[
+        {term:"Volontaire", ar:"غالباً كنقدرو نتحكمو فيه بإرادتنا."},
+        {term:"Tendons", ar:"مرتبط بالعظام بواسطة الأوتار (tendons)."},
+        {term:"Exemples", fr:"Le biceps, le quadriceps", ar:"عضلة العضد، وعضلة الفخذ."}
+      ]},
+      {t:"h", fr:"Le muscle cardiaque", ar:"العضلة القلبية"},
+      {t:"items", items:[
+        {term:"Involontaire", ar:"كتخدم بلا تحكم إرادي مباشر."},
+        {term:"Localisation", ar:"كاينة غير فالقلب."},
+        {term:"Rôle", ar:"ضخ الدم لجميع أنحاء الجسم."}
+      ]},
+      {t:"h", fr:"Le muscle lisse", ar:"العضلات الملساء"},
+      {t:"items", items:[
+        {term:"Involontaire", ar:"ما كنقدروش نتحكمو فيها مباشرة بالإرادة."},
+        {term:"Localisation", ar:"كاينة فالأمعاء، المعدة، الأوعية الدموية والمثانة."},
+        {term:"Rôle", ar:"كتساهم فالهضم وتحريك البول وتنظيم قطر الأوعية الدموية."}
+      ]}
+    ]},
+    {fr:"Les principaux muscles du corps", ar:"أهم العضلات", blocks:[
+      {t:"table", head:["Muscle en français","بالعربية","Fonction"], langs:["fr","ar","ar"], rows:[
+        ["Le deltoïde","العضلة الدالية","تحريك الكتف"],
+        ["Le biceps","العضلة ذات الرأسين","ثني المرفق"],
+        ["Le triceps","العضلة ثلاثية الرؤوس","بسط المرفق"],
+        ["Le pectoral","العضلة الصدرية","تحريك الذراع"],
+        ["Les abdominaux","عضلات البطن","ثني الجذع وتثبيته"],
+        ["Le grand fessier","العضلة الألوية الكبرى","بسط الورك"],
+        ["Le quadriceps","العضلة رباعية الرؤوس","بسط الركبة"],
+        ["Les ischio-jambiers","عضلات خلف الفخذ","ثني الركبة"],
+        ["Le gastrocnémien","عضلة الساق التوأمية","المساهمة في الوقوف على رؤوس الأصابع"]
+      ]}
+    ]},
+    {fr:"Comment fonctionne un muscle ?", ar:"كيفاش كتخدم العضلة؟", blocks:[
+      {t:"p", ar:"العضلة كتخدم بجوج عمليات أساسيتين:"},
+      {t:"items", items:[
+        {term:"La contraction musculaire", ar:"الانقباض، العضلة كتولد القوة وكتقصر غالباً."},
+        {term:"Le relâchement musculaire", ar:"الارتخاء، العضلة كتنقص فيها القوة وكتسمح بالحركة المعاكسة."}
+      ]},
+      {t:"ex", ar:"ملي كتبغي تثني المرفق ديالك، عضلة le biceps كتساهم فالانقباض، وعضلة le triceps كتساهم فتنظيم الحركة."}
+    ]},
+    {fr:"Vocabulaire important", ar:"مصطلحات مهمة فالتمريض", blocks:[
+      {t:"table", head:["Français","العربية"], langs:["fr","ar"], rows:[
+        ["Le muscle","العضلة"],
+        ["Le tendon","الوتر"],
+        ["La contraction","الانقباض"],
+        ["Le relâchement","الارتخاء"],
+        ["La force musculaire","القوة العضلية"],
+        ["La fatigue musculaire","التعب العضلي"],
+        ["La crampe","التشنج العضلي"],
+        ["La paralysie","الشلل"],
+        ["L'atrophie musculaire","ضمور العضلات"],
+        ["La flexion","الثني"],
+        ["L'extension","البسط"]
+      ]}
+    ]}
+  ],
+  summary:[
+    "Le système musculaire permet le mouvement, la posture et la production de chaleur.",
+    "Les trois types de muscles : squelettiques, cardiaques et lisses.",
+    "Le muscle squelettique : généralement volontaire.",
+    "Le muscle cardiaque : involontaire, situé dans le cœur.",
+    "Le muscle lisse : involontaire, situé dans les organes internes.",
+    "Le tendon : relie généralement un muscle à un os."
+  ],
+  quiz:[
+    {q:"Combien existe-t-il de grands types de muscles ?", o:["Deux","Trois","Cinq"], a:1},
+    {q:"Quel muscle permet principalement l'extension du coude ?", o:["Le biceps","Le triceps","Le deltoïde"], a:1},
+    {q:"Quel type de muscle trouve-t-on dans l'intestin ?", o:["Muscle lisse","Muscle squelettique","Muscle cardiaque"], a:0},
+    {q:"Quel est le rôle principal du muscle cardiaque ?", o:["Digérer les aliments","Pomper le sang","Déplacer les os du bras"], a:1},
+    {q:"Quelle structure relie généralement un muscle à un os ?", o:["Le tendon","Le cartilage","Le nerf"], a:0}
+  ]
+},
+
+/* ---------------------------------------------------------------- SQUELETTIQUE */
+{
+  id:"squelettique", short:"Squelettique", icon:"🦴", color:"var(--skel)",
+  fr:"Le système squelettique", ar:"الجهاز الهيكلي",
+  intro:"غادي نشرح ليك الجهاز الهيكلي بالفرنسية مع الشرح بالدارجة، بمستوى التمريض (Niveau infirmier).",
+  sections:[
+    {fr:"Définition", ar:"التعريف", blocks:[
+      {t:"p", fr:"Le système squelettique est l'ensemble des os du corps humain. Il forme la structure du corps et protège les organes internes.",
+          ar:"الجهاز الهيكلي هو مجموع العظام اللي كاينة فالجسم. كيعطي الشكل للجسم وكيحمي الأعضاء الداخلية."},
+      {t:"p", fr:"Il est constitué des os, des articulations et des cartilages.",
+          ar:"كيتكون من العظام، المفاصل والغضاريف."}
+    ]},
+    {fr:"Les rôles du système squelettique", ar:"الأدوار", blocks:[
+      {t:"items", items:[
+        {term:"Soutien", fr:"Donne sa forme au corps.", ar:"كيعطي الشكل للجسم وكيحملو."},
+        {term:"Protection", fr:"Protège les organes internes.", ar:"كيحمي الأعضاء الداخلية."},
+        {term:"Mouvement", fr:"Permet les mouvements avec les muscles.", ar:"كيسمح بالحركة بتعاون مع العضلات."},
+        {term:"Production des cellules sanguines", fr:"Grâce à la moelle osseuse.", ar:"بفضل النخاع العظمي (moelle osseuse)."},
+        {term:"Réserve minérale", fr:"Stocke le calcium et le phosphore.", ar:"كيخزن الكالسيوم والفوسفور."}
+      ]}
+    ]},
+    {fr:"Les parties du squelette", ar:"أجزاء الهيكل", blocks:[
+      {t:"fig", k:"skeleton", fr:"Le squelette humain, vue de face.", ar:"الهيكل العظمي ديال الإنسان، من الوجه.",
+        legend:[{c:"var(--skel)", fr:"Squelette axial", ar:"الهيكل المحوري"},{c:"var(--joint)", fr:"Squelette appendiculaire", ar:"الهيكل الطرفي"}]},
+      {t:"h", fr:"A. Le squelette axial", ar:"الهيكل المحوري"},
+      {t:"p", fr:"Il comprend :"},
+      {t:"items", items:[
+        {term:"Le crâne", tAr:"الجمجمة", ar:"كتحمي الدماغ."},
+        {term:"La colonne vertébrale", tAr:"العمود الفقري", ar:"كتحمل الجسم وكتحمي النخاع الشوكي."},
+        {term:"La cage thoracique", tAr:"القفص الصدري", ar:"كتحمي القلب والرئتين."}
+      ]},
+      {t:"h", fr:"B. Le squelette appendiculaire", ar:"الهيكل الطرفي"},
+      {t:"p", fr:"Il comprend :"},
+      {t:"items", items:[
+        {term:"Les membres supérieurs", fr:"Bras, avant-bras et mains.", ar:"الأطراف العلوية: العضد، الساعد واليدين."},
+        {term:"Les membres inférieurs", fr:"Cuisses, jambes et pieds.", ar:"الأطراف السفلية: الفخذين، الساقين والقدمين."},
+        {term:"Les ceintures", fr:"Scapulaire et pelvienne.", ar:"الحزام الكتفي والحزام الحوضي."}
+      ]}
+    ]},
+    {fr:"Les principaux os du corps humain", ar:"أهم العظام", blocks:[
+      {t:"table", head:["Os en français","بالعربية"], langs:["fr","ar"], rows:[
+        ["Le crâne","الجمجمة"],
+        ["La clavicule","الترقوة"],
+        ["L'omoplate","لوح الكتف"],
+        ["Le sternum","عظم القص"],
+        ["Les côtes","الأضلاع"],
+        ["L'humérus","عظم العضد"],
+        ["Le radius","عظم الكعبرة"],
+        ["L'ulna","عظم الزند"],
+        ["Le bassin","الحوض"],
+        ["Le fémur","عظم الفخذ"],
+        ["La rotule","الرضفة"],
+        ["Le tibia","عظم الظنبوب"],
+        ["La fibula","الشظية"]
+      ]}
+    ]},
+    {fr:"Combien d'os possède le corps humain ?", ar:"شحال كاين من عظمة فالجسم؟", blocks:[
+      {t:"items", items:[
+        {term:"Adulte", fr:"206 os en général.", ar:"عند الكبير: 206 عظمة تقريباً."},
+        {term:"Nouveau-né", fr:"Environ 270 os, dont certains fusionnent pendant la croissance.", ar:"عند المولود الجديد: حوالي 270 عظمة، وبعضها كيتلحم مع النمو."}
+      ]}
+    ]},
+    {fr:"Les articulations", ar:"المفاصل", blocks:[
+      {t:"p", fr:"Une articulation est la zone de contact entre deux os ou plus.", ar:"المفصل هو البلاصة اللي كيتلامسو فيها جوج عظام أو أكثر."},
+      {t:"items", items:[
+        {term:"Le genou", tAr:"الركبة", ar:""},
+        {term:"Le coude", tAr:"المرفق", ar:""},
+        {term:"L'épaule", tAr:"الكتف", ar:""},
+        {term:"La hanche", tAr:"الورك", ar:""}
+      ]},
+      {t:"note", fr:"Le détail des articulations (types, éléments, mouvements) est dans le chapitre suivant.", ar:"التفاصيل ديال المفاصل (الأنواع، المكونات، الحركات) كاينين فالفصل اللي من بعد."}
+    ]}
+  ],
+  summary:[
+    "Système squelettique = os + articulations + cartilages.",
+    "Rôles : soutien, protection, mouvement, production des cellules sanguines, réserve minérale.",
+    "Squelette axial = crâne + colonne vertébrale + cage thoracique.",
+    "Squelette appendiculaire = membres + ceintures scapulaire et pelvienne.",
+    "Adulte : 206 os en général.",
+    "Moelle osseuse = production des cellules sanguines.",
+    "Fémur = l'os le plus long du corps."
+  ],
+  quiz:[
+    {q:"Combien d'os possède généralement un adulte ?", o:["106","206","306"], a:1},
+    {q:"Quel est l'os le plus long du corps humain ?", o:["Le tibia","L'humérus","Le fémur"], a:2},
+    {q:"Quel organe est protégé par la cage thoracique ?", o:["Le cœur et les poumons","Le cerveau","La vessie"], a:0},
+    {q:"Quel est le rôle de la moelle osseuse ?", o:["Digérer les aliments","Produire des cellules sanguines","Filtrer l'urine"], a:1}
+  ]
+},
+/* ---------------------------------------------------------------- ARTICULATIONS */
+{
+  id:"articulations", short:"Articulations", icon:"🦴", color:"var(--joint)",
+  fr:"Les articulations", ar:"المفاصل",
+  intro:"غادي نشرح ليك المفاصل بالفرنسية والدارجة، بطريقة مناسبة لمستوى التمريض (Niveau infirmier).",
+  sections:[
+    {fr:"Définition", ar:"التعريف", blocks:[
+      {t:"p", fr:"Une articulation est la zone de jonction entre deux ou plusieurs os.",
+          ar:"المفصل هو البلاصة اللي كيلتاقاو فيها جوج عظام أو أكثر، وكيعاون على الحركة أو على تثبيت الهيكل العظمي."}
+    ]},
+    {fr:"Les types d'articulations", ar:"أنواع المفاصل", blocks:[
+      {t:"p", ar:"كاينين 3 أنواع رئيسية حسب درجة الحركة:"},
+      {t:"h", fr:"Les articulations immobiles", ar:"المفاصل الثابتة"},
+      {t:"items", items:[
+        {term:"Mobilité", ar:"ما كتسمحش تقريباً بالحركة."},
+        {term:"Exemple", fr:"Les sutures du crâne", ar:"دروز الجمجمة."}
+      ]},
+      {t:"h", fr:"Les articulations semi-mobiles", ar:"المفاصل محدودة الحركة"},
+      {t:"items", items:[
+        {term:"Mobilité", ar:"كتسمح بحركة صغيرة."},
+        {term:"Exemple", fr:"Les articulations entre les corps des vertèbres", ar:"المفاصل بين أجسام الفقرات."}
+      ]},
+      {t:"h", fr:"Les articulations mobiles", ar:"المفاصل المتحركة"},
+      {t:"items", items:[
+        {term:"Mobilité", ar:"كتسمح بحركات واسعة نسبياً."},
+        {term:"Exemples", fr:"Le genou, le coude, l'épaule, la hanche", ar:"الركبة، المرفق، الكتف، الورك."}
+      ]}
+    ]},
+    {fr:"Les éléments d'une articulation mobile", ar:"مكونات المفصل المتحرك", blocks:[
+      {t:"fig", k:"joint", fr:"Coupe schématique d'une articulation synoviale.", ar:"مقطع مبسط ديال مفصل زليلي."},
+      {t:"items", items:[
+        {term:"Le cartilage articulaire", tAr:"الغضروف المفصلي", ar:"كيغطّي أطراف العظام وكيقلل الاحتكاك."},
+        {term:"La capsule articulaire", tAr:"المحفظة المفصلية", ar:"كتغلف المفصل وكتساعد على تثبيتو."},
+        {term:"La membrane synoviale", tAr:"الغشاء الزليلي", ar:"كتنتج السائل الزليلي."},
+        {term:"Le liquide synovial", tAr:"السائل الزليلي", ar:"كيسهّل الحركة وكيقلل الاحتكاك."},
+        {term:"Les ligaments", tAr:"الأربطة", ar:"كيربطو العظام ببعضها وكيعاونو على استقرار المفصل."},
+        {term:"Les os", tAr:"العظام", ar:"كيشكلو أطراف المفصل."}
+      ]},
+      {t:"note", ar:"ملاحظة: ماشي جميع المفاصل فيها تجويف وسائل زليلي؛ هاد المكونات كتخص المفاصل الزليلية (articulations synoviales).",
+             fr:"Remarque : ces éléments concernent les articulations synoviales, pas toutes les articulations."}
+    ]},
+    {fr:"Les mouvements articulaires", ar:"حركات المفاصل", blocks:[
+      {t:"table", head:["Français","بالعربية","مثال"], langs:["fr","ar","ar"], rows:[
+        ["La flexion","الثني","ثني المرفق"],
+        ["L'extension","البسط","تمديد المرفق"],
+        ["L'abduction","الإبعاد عن محور الجسم","رفع الذراع للجانب"],
+        ["L'adduction","التقريب نحو محور الجسم","إرجاع الذراع للجسم"],
+        ["La rotation","الدوران","تدوير الرأس"],
+        ["La circumduction","الحركة الدائرية","تحريك الذراع فدائرة"]
+      ]}
+    ]},
+    {fr:"Quelques maladies articulaires", ar:"بعض أمراض المفاصل", blocks:[
+      {t:"items", items:[
+        {term:"L'arthrose", ar:"تآكل تدريجي فالغضروف المفصلي."},
+        {term:"L'arthrite", ar:"التهاب المفصل."},
+        {term:"L'entorse", ar:"تمدد أو تمزق فالأربطة."},
+        {term:"La luxation", ar:"خروج عظم من الوضع الطبيعي ديالو داخل المفصل."},
+        {term:"La fracture", ar:"كسر فالعظم، وماشي مرض ديال المفصل بالضرورة."}
+      ]}
+    ]}
+  ],
+  summary:[
+    "Articulation : jonction entre deux ou plusieurs os.",
+    "Trois types selon la mobilité : immobiles, semi-mobiles et mobiles.",
+    "Cartilage : réduit les frottements.",
+    "Liquide synovial : facilite le mouvement.",
+    "Ligaments : relient les os entre eux.",
+    "Tendons : relient généralement les muscles aux os."
+  ],
+  quiz:[
+    {q:"Quel est le rôle du cartilage articulaire ?", o:["Produire les globules rouges","Réduire les frottements","Relier le muscle à l'os"], a:1},
+    {q:"Quel élément relie les os entre eux ?", o:["Le ligament","Le tendon","Le muscle"], a:0},
+    {q:"Quelle articulation est un exemple d'articulation mobile ?", o:["Les sutures du crâne","Le genou","Les dents dans leurs alvéoles"], a:1},
+    {q:"Quel liquide facilite le mouvement dans une articulation synoviale ?", o:["Le liquide synovial","Le sang","La salive"], a:0},
+    {q:"Que signifie la flexion ?", o:["Le redressement d'un membre","Le rapprochement des segments d'un membre en pliant l'articulation","La rupture d'un os"], a:1}
+  ]
+}
+];
+
+
+var FIGS = {
+brain:'<svg viewBox="0 0 360 275" role="img" aria-label="Schéma de l\'encéphale : cerveau, cervelet, tronc cérébral et moelle épinière">'+
+ '<path d="M70 125 C55 55 125 18 195 22 C262 26 305 72 295 125 C290 152 255 162 232 162 L125 162 C88 162 72 148 70 125 Z" style="fill:color-mix(in srgb,var(--nerv) 24%,var(--surface));stroke:var(--nerv);stroke-width:3"/>'+
+ '<g style="fill:none;stroke:var(--nerv);stroke-width:2;opacity:.6"><path d="M105 80 C130 60 150 95 175 70 C200 50 225 85 255 62"/><path d="M92 118 C120 100 140 135 170 112 C200 92 230 130 275 105"/><path d="M115 146 C140 130 165 150 195 135 C215 125 235 145 250 138"/></g>'+
+ '<ellipse cx="262" cy="188" rx="50" ry="28" style="fill:color-mix(in srgb,var(--joint) 26%,var(--surface));stroke:var(--joint);stroke-width:3"/>'+
+ '<g style="fill:none;stroke:var(--joint);stroke-width:2;opacity:.7"><path d="M222 182 Q262 192 302 182"/><path d="M220 192 Q262 204 304 192"/><path d="M228 202 Q262 212 296 202"/></g>'+
+ '<path d="M160 160 L204 160 L206 214 Q184 236 160 214 Z" style="fill:color-mix(in srgb,var(--musc) 26%,var(--surface));stroke:var(--musc);stroke-width:3"/>'+
+ '<rect x="173" y="228" width="20" height="40" rx="10" style="fill:color-mix(in srgb,var(--skel) 30%,var(--surface));stroke:var(--skel);stroke-width:3"/>'+
+ '<path class="lead" d="M66 60 L100 78"/><text class="lbl" x="6" y="58">Cerveau</text>'+
+ '<path class="lead" d="M232 248 L258 212"/><text class="lbl" x="214" y="262">Cervelet</text>'+
+ '<path class="lead" d="M102 200 L166 200"/><text class="lbl" x="6" y="205">Tronc cérébral</text>'+
+ '<path class="lead" d="M104 252 L172 252"/><text class="lbl" x="6" y="257">Moelle épinière</text></svg>',
+
+skeleton:'<svg viewBox="0 0 340 450" role="img" aria-label="Schéma du squelette : squelette axial et squelette appendiculaire"><g transform="translate(40 0)">'+
+ '<ellipse class="ax" cx="130" cy="40" rx="28" ry="32"/>'+
+ '<path class="axl" d="M130 74 L130 218" stroke-width="10" stroke-dasharray="9 3"/>'+
+ '<ellipse class="axl" cx="130" cy="132" rx="40" ry="52" stroke-width="3"/>'+
+ '<path class="axl" stroke-width="3" d="M92 108 C110 118 150 118 168 108 M90 128 C110 140 150 140 170 128 M92 148 C110 158 150 158 168 148 M98 166 C115 174 145 174 162 166"/>'+
+ '<rect class="ax" x="126" y="100" width="8" height="52" rx="4"/>'+
+ '<path class="apl" stroke-width="6" d="M130 90 L82 88 M130 90 L178 88"/>'+
+ '<path class="apl" stroke-width="9" d="M82 90 L52 175 M178 90 L208 175"/>'+
+ '<path class="apl" stroke-width="5" d="M52 178 L38 262 M58 178 L46 262 M208 178 L222 262 M202 178 L214 262"/>'+
+ '<ellipse class="ap" cx="40" cy="276" rx="8" ry="13"/><ellipse class="ap" cx="220" cy="276" rx="8" ry="13"/>'+
+ '<path class="ap" d="M92 214 C84 246 108 262 130 252 C152 262 176 246 168 214 C150 224 110 224 92 214 Z"/>'+
+ '<path class="apl" stroke-width="10" d="M108 252 L98 335 M152 252 L162 335"/>'+
+ '<circle class="ap" cx="98" cy="343" r="7"/><circle class="ap" cx="162" cy="343" r="7"/>'+
+ '<path class="apl" stroke-width="8" d="M97 352 L95 425 M163 352 L165 425"/>'+
+ '<ellipse class="ap" cx="88" cy="434" rx="16" ry="7"/><ellipse class="ap" cx="172" cy="434" rx="16" ry="7"/></g>'+
+ '<text class="lbl" x="248" y="46">Crâne</text>'+
+ '<text class="lbl" x="98" y="138" text-anchor="end">Humérus</text>'+
+ '<text class="lbl" x="252" y="246">Bassin</text>'+
+ '<text class="lbl" x="128" y="302" text-anchor="end">Fémur</text>'+
+ '<text class="lbl" x="254" y="348">Rotule</text>'+
+ '<text class="lbl" x="128" y="395" text-anchor="end">Tibia</text></svg>',
+
+joint:'<svg viewBox="0 0 440 300" role="img" aria-label="Coupe d\'une articulation synoviale : os, cartilage, capsule, membrane et liquide synovial, ligaments">'+
+ '<rect x="132" y="126" width="116" height="50" style="fill:color-mix(in srgb,var(--joint) 16%,var(--surface))"/>'+
+ '<rect x="150" y="8" width="80" height="92" rx="12" class="ax"/><ellipse cx="190" cy="108" rx="58" ry="22" class="ax"/>'+
+ '<rect x="150" y="204" width="80" height="88" rx="12" class="ax"/><ellipse cx="190" cy="196" rx="58" ry="22" class="ax"/>'+
+ '<path d="M132 108 A58 22 0 0 0 248 108 M132 196 A58 22 0 0 1 248 196" style="fill:none;stroke:var(--joint);stroke-width:6;stroke-linecap:round"/>'+
+ '<path d="M146 80 C112 100 112 204 146 224 M234 80 C268 100 268 204 234 224" style="fill:none;stroke:var(--ink);stroke-width:3;opacity:.8"/>'+
+ '<path d="M134 112 C128 130 128 172 134 190 M246 112 C252 130 252 172 246 190" style="fill:none;stroke:var(--musc);stroke-width:3;stroke-dasharray:5 3"/>'+
+ '<path d="M100 62 C94 120 94 180 100 238 M280 62 C286 120 286 180 280 238" style="fill:none;stroke:var(--nerv);stroke-width:6;stroke-linecap:round"/>'+
+ '<path class="lead" d="M296 40 L232 40"/><text class="lbl" x="302" y="44">Os</text>'+
+ '<path class="lead" d="M296 96 L244 114"/><text class="lbl" x="302" y="100">Cartilage articulaire</text>'+
+ '<path class="lead" d="M296 148 L214 150"/><text class="lbl" x="302" y="152">Liquide synovial</text>'+
+ '<path class="lead" d="M296 192 L250 168"/><text class="lbl" x="302" y="196">Membrane synoviale</text>'+
+ '<path class="lead" d="M296 236 L268 204"/><text class="lbl" x="302" y="240">Capsule articulaire</text>'+
+ '<path class="lead" d="M56 146 L92 146"/><text class="lbl" x="4" y="150">Ligament</text></svg>',
+
+muscles:'<svg viewBox="0 0 480 190" role="img" aria-label="Les trois types de muscles : squelettique, cardiaque et lisse">'+
+ '<defs><pattern id="mstripe" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="4" height="8" style="fill:var(--musc);opacity:.3"/></pattern></defs>'+
+ '<g style="stroke:var(--musc);stroke-width:2"><rect x="10" y="28" width="140" height="24" rx="12" fill="url(#mstripe)"/><rect x="10" y="62" width="140" height="24" rx="12" fill="url(#mstripe)"/><rect x="10" y="96" width="140" height="24" rx="12" fill="url(#mstripe)"/></g>'+
+ '<g style="fill:var(--musc)"><ellipse cx="26" cy="40" rx="5" ry="3"/><ellipse cx="46" cy="40" rx="5" ry="3"/><ellipse cx="132" cy="74" rx="5" ry="3"/><ellipse cx="112" cy="74" rx="5" ry="3"/><ellipse cx="40" cy="108" rx="5" ry="3"/><ellipse cx="92" cy="108" rx="5" ry="3"/></g>'+
+ '<g style="fill:none;stroke:var(--musc);stroke-width:16;stroke-linecap:round;opacity:.42"><path d="M185 36 L235 58 L295 36"/><path d="M235 58 L235 110 L195 128"/><path d="M235 110 L292 130"/></g>'+
+ '<g style="stroke:var(--ink);stroke-width:3;opacity:.75"><path d="M208 36 L214 54"/><path d="M262 54 L268 42"/><path d="M229 84 L241 84"/><path d="M212 119 L218 135"/><path d="M262 120 L266 134"/></g>'+
+ '<g style="fill:color-mix(in srgb,var(--musc) 28%,var(--surface));stroke:var(--musc);stroke-width:2"><path d="M338 42 Q400 20 462 42 Q400 64 338 42 Z"/><path d="M348 84 Q408 62 468 84 Q408 106 348 84 Z"/><path d="M338 126 Q400 104 462 126 Q400 148 338 126 Z"/></g>'+
+ '<g style="fill:var(--musc)"><ellipse cx="400" cy="42" rx="14" ry="5"/><ellipse cx="408" cy="84" rx="14" ry="5"/><ellipse cx="400" cy="126" rx="14" ry="5"/></g>'+
+ '<text class="lbl" x="80" y="162" text-anchor="middle">Squelettique</text><text class="lbl2" x="80" y="178" text-anchor="middle">striée · volontaire</text>'+
+ '<text class="lbl" x="245" y="162" text-anchor="middle">Cardiaque</text><text class="lbl2" x="245" y="178" text-anchor="middle">striée · involontaire</text>'+
+ '<text class="lbl" x="400" y="162" text-anchor="middle">Lisse</text><text class="lbl2" x="400" y="178" text-anchor="middle">non striée · involontaire</text></svg>'
+};
+
+/* ---------------------------------------------------------------- rendering */
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+function frEl(tag,txt){return txt?'<'+tag+' class="fr" lang="fr">'+esc(txt)+'</'+tag+'>':'';}
+function arEl(tag,txt){return txt?'<'+tag+' class="ar" lang="ar" dir="rtl">'+esc(txt)+'</'+tag+'>':'';}
+
+function renderBlock(b){
+  if(b.t==="p") return '<div class="pair">'+frEl("p",b.fr)+arEl("p",b.ar)+'</div>';
+  if(b.t==="h") return '<h4>'+frEl("span",b.fr)+arEl("span",b.ar)+'</h4>';
+  if(b.t==="note") return '<aside class="note">'+frEl("p",b.fr)+arEl("p",b.ar)+'</aside>';
+  if(b.t==="ex") return '<aside class="ex"><div class="ar" lang="ar" dir="rtl"><b>مثال:</b> '+esc(b.ar)+'</div></aside>';
+  if(b.t==="fig"){
+    var lg=(b.legend||[]).map(function(l){return '<span><i style="background:'+l.c+'"></i><span class="fr" lang="fr">'+esc(l.fr)+'</span><span class="ar" lang="ar" dir="rtl">'+esc(l.ar)+'</span></span>';}).join("");
+    return '<figure class="fig">'+FIGS[b.k]+(lg?'<div class="legend">'+lg+'</div>':'')+'<figcaption>'+frEl("span",b.fr)+arEl("span",b.ar)+'</figcaption></figure>';
+  }
+  if(b.t==="items"){
+    return '<ul class="items">'+b.items.map(function(i){
+      return '<li><span class="term">'+esc(i.term)+(i.tAr?'<small class="ar" lang="ar" dir="rtl">'+esc(i.tAr)+'</small>':'')+'</span>'+
+             '<span class="desc">'+frEl("span",i.fr)+arEl("span",i.ar)+'</span></li>';
+    }).join("")+'</ul>';
+  }
+  if(b.t==="table"){
+    var th=b.head.map(function(h,i){return '<th class="'+b.langs[i]+'">'+esc(h)+'</th>';}).join("");
+    var tr=b.rows.map(function(r){
+      return '<tr>'+r.map(function(c,i){return '<td class="'+b.langs[i]+'"'+(b.langs[i]==="ar"?' lang="ar" dir="rtl"':'')+'>'+esc(c)+'</td>';}).join("")+'</tr>';
+    }).join("");
+    return '<div class="tablewrap"><table><thead><tr>'+th+'</tr></thead><tbody>'+tr+'</tbody></table></div>';
+  }
+  return "";
+}
+
+function renderChapter(ch){
+  var h='<div class="ch-head"><h2><span class="fr" lang="fr">'+esc(ch.icon+" "+ch.fr)+'</span><span class="ar" lang="ar" dir="rtl">'+esc(ch.ar)+'</span></h2>'+
+        '<p class="intro ar" lang="ar" dir="rtl">'+esc(ch.intro)+'</p></div>';
+  ch.sections.forEach(function(s){
+    h+='<article class="sec"><h3 class="title">'+frEl("span",s.fr)+arEl("span",s.ar)+'</h3>'+s.blocks.map(renderBlock).join("")+'</article>';
+  });
+  h+='<div class="sum"><h3><span class="fr" lang="fr">Résumé pour l\'examen</span><span class="ar" lang="ar" dir="rtl">ملخص للحفظ</span></h3><ul>'+
+     ch.summary.map(function(s){return '<li dir="auto">'+esc(s)+'</li>';}).join("")+'</ul></div>';
+  h+='<div class="quiz" id="quiz"></div>';
+  return h;
+}
+
+function renderQuiz(box,qs){
+  var answered=0, score=0;
+  box.innerHTML='<h3><span class="fr" lang="fr">Test de révision</span><span class="ar" lang="ar" dir="rtl">اختبار صغير</span></h3>'+
+    qs.map(function(q,qi){
+      return '<div class="q" data-qi="'+qi+'"><p>'+(qi+1)+'. '+esc(q.q)+'</p><div class="opts">'+
+        q.o.map(function(o,oi){return '<button type="button" class="opt" data-oi="'+oi+'">'+esc(o)+'</button>';}).join("")+
+        '</div><div class="fb" aria-live="polite"></div></div>';
+    }).join("")+
+    '<div class="score"><strong id="sc">Score : 0 / '+qs.length+'</strong><button type="button" class="reset">Recommencer le test</button></div>';
+  box.addEventListener("click",function(e){
+    var b=e.target.closest(".opt");
+    if(b&&!b.disabled){
+      var qEl=b.closest(".q"), q=qs[+qEl.dataset.qi], oi=+b.dataset.oi;
+      var btns=qEl.querySelectorAll(".opt");
+      btns.forEach(function(x){x.disabled=true;});
+      btns[q.a].classList.add("right");
+      var fb=qEl.querySelector(".fb");
+      if(oi===q.a){score++;fb.textContent="Bonne réponse !";fb.className="fb ok";}
+      else{b.classList.add("wrong");fb.textContent="Mauvaise réponse. La bonne réponse est en vert.";fb.className="fb no";}
+      answered++;
+      box.querySelector("#sc").textContent="Score : "+score+" / "+qs.length;
+    }
+    if(e.target.closest(".reset")){renderQuizFresh();}
+  });
+  function renderQuizFresh(){
+    var clone=box.cloneNode(false); box.parentNode.replaceChild(clone,box); renderQuiz(clone,qs);
+  }
+}
+
+/* tabs + routing */
+var tabsEl=document.getElementById("tabs"), panel=document.getElementById("panel");
+CHAPTERS.forEach(function(ch){
+  var b=document.createElement("button");
+  b.type="button"; b.className="tab"; b.setAttribute("role","tab"); b.dataset.id=ch.id; b.style.setProperty("--c",ch.color);
+  b.innerHTML='<span>'+ch.icon+'</span><span class="fr" lang="fr">'+esc(ch.short)+'</span><span class="ar" lang="ar" dir="rtl">'+esc(ch.ar)+'</span>';
+  tabsEl.appendChild(b);
+});
+function show(id,scroll){
+  var ch=CHAPTERS.filter(function(c){return c.id===id;})[0]||CHAPTERS[0];
+  panel.style.setProperty("--c",ch.color);
+  panel.innerHTML=renderChapter(ch);
+  renderQuiz(document.getElementById("quiz"),ch.quiz);
+  tabsEl.querySelectorAll(".tab").forEach(function(t){t.setAttribute("aria-selected",t.dataset.id===ch.id?"true":"false");});
+  try{history.replaceState(null,"","#"+ch.id);}catch(e){}
+  if(scroll){var top=panel.getBoundingClientRect().top+window.scrollY-70;window.scrollTo({top:Math.max(0,top),behavior:"auto"});}
+}
+tabsEl.addEventListener("click",function(e){var t=e.target.closest(".tab");if(t)show(t.dataset.id,true);});
+show((location.hash||"").slice(1),false);
+
+/* language mode */
+document.querySelector(".modes").addEventListener("click",function(e){
+  var b=e.target.closest("button");if(!b)return;
+  document.body.dataset.mode=b.dataset.mode;
+  this.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});
+});
+</script>
+</body>
+</html>
